@@ -122,7 +122,7 @@ async function getIpList() {
       const contact1 = new Csv(ipToDevice[ip[2]], value, message_id, timestamp, new Date(), system_enable, extractionEfficiency, operating_mode, ambient_temp_c, ambient_rh, ambient_ah, hv_stage_temp_c, hv_stage_rh, hv_stage_ah, hv_stage_dp, condenser_stage_temp_c, condenser_stage_rh, condenser_stage_ah, condenser_surface_temp_c, blower_demand, blower_drive, hv_demand, hv_drive, condenser_demand, condenser_drive, Air_Flow_PIDiState, hv_PIDiState, Condenser_PIDiState, condenser_control_sp, hv_control_sp, blower_control_sp);
       if (timestamp !== undefined) contact1.saveAsCSV();
     });
-    ws.on('error', (data) => { console.log('Error', ws._url) });
+    ws.on('error', (data) => { });
     ws.on('close', (data) => { });
   });
 }
@@ -153,7 +153,7 @@ setInterval(async () => {
     await axios.put(data?.url, buffer);
   });
   getIpList()
-}, 60 * 1000)
+},15 * 60 * 1000)
 
 setInterval(async () => {
   const users = await ADMIN.findOne();
